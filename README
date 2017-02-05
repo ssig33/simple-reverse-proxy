@@ -1,0 +1,6 @@
+# What's?
+Simple Reverse Proxy Container
+
+# How to use it.
+``` sh
+$ docker run -p 80 ssig33/simple-reverse-proxy TARGET_HOST:TARGET_PORT

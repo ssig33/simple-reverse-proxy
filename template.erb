@@ -1,0 +1,28 @@
+worker_processes 1;
+
+error_log logs/error.log;
+error_log logs/error.log notice;
+error_log logs/error.log info;
+
+events {
+  worker_connections 1024;
+}
+
+http {
+  include    mime.types;
+  default_type application/octet-stream;
+
+  sendfile    on;
+  keepalive_timeout 65;
+  types_hash_max_size 2048;
+  client_max_body_size 1000m;
+
+  server {
+    listen 80 default_server;
+	  listen [::]:80 default_server;
+
+    location / {
+      proxy_pass http://<%= _target %>/;
+    }
+  }
+}
